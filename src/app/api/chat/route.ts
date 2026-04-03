@@ -8,9 +8,21 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const lastMessage = messages[messages.length - 1];
-  const query = lastMessage?.content || "";
+  const rawContent =
+    lastMessage?.parts
+      ?.filter((p: { type: string }) => p.type === "text")
+      .map((p: { text: string }) => p.text)
+      .join("") ||
+    lastMessage?.content ||
+    "";
 
-  const results = searchDocs(query, 5);
+  // Extract user-visible query (strip system/context tags)
+  const query = rawContent
+    .replace(/\[SYSTEM\][\s\S]*$/, "")
+    .replace(/\[CONTEXT:[^\]]*\]/g, "")
+    .trim();
+
+  const results = searchDocs(query || rawContent, 5);
 
   const contextBlock = results
     .map(
@@ -19,30 +31,50 @@ export async function POST(req: Request) {
     )
     .join("\n\n---\n\n");
 
-  const systemPrompt = `You are the AI support assistant for Acme Analytics, an AI-powered analytics platform for SaaS businesses.
+  const systemPrompt = `You are an AI onboarding assistant for Acme Analytics, a SaaS analytics platform.
 
-Your role:
-- Answer questions about Acme Analytics based ONLY on the provided documentation
-- Be helpful, concise, and accurate
-- If the documentation doesn't contain the answer, say so honestly
-- Always cite your sources using [Source N] format
-- Format responses with markdown for readability
-- For code examples, use the appropriate language syntax highlighting
+YOUR ROLE:
+- Guide new users through their first experience with the product
+- Be warm, encouraging, and concise
+- Celebrate progress and small wins
+- Answer questions using the product documentation
+- Keep responses short (2-4 sentences max) and actionable
+- Use a friendly, conversational tone — not corporate-speak
+- If the user seems stuck, proactively suggest the next action
 
-IMPORTANT RULES:
-- Never make up features or information not in the docs
-- If asked about pricing, use exact numbers from the docs
-- For technical questions, include code examples when relevant
-- Keep answers focused and actionable
+ONBOARDING CONTEXT:
+The user is going through a 5-step onboarding:
+1. Tell us your role (Founder, PM, Marketing, Developer)
+2. Connect a data source (SDK, Segment, or CSV)
+3. Create their first dashboard
+4. Invite team members
+5. Set up their first alert
 
-Here is the relevant documentation for this question:
+RULES:
+- Never make up features not in the docs
+- Always relate your guidance to their stated role when possible
+- When a step is complete, briefly congratulate and transition to the next
+- Use emojis sparingly (max 1 per message)
+- Format with markdown when showing code or lists
 
-${contextBlock || "No relevant documentation found for this query."}`;
+PRODUCT DOCUMENTATION:
+${contextBlock || "No specific documentation found for this query."}`;
 
   const result = streamText({
     model: anthropic("claude-sonnet-4-20250514"),
     system: systemPrompt,
-    messages,
+    messages: messages.map(
+      (m: { role: string; content?: string; parts?: Array<{ type: string; text: string }> }) => ({
+        role: m.role,
+        content:
+          m.parts
+            ?.filter((p) => p.type === "text")
+            .map((p) => p.text)
+            .join("") ||
+          m.content ||
+          "",
+      })
+    ),
   });
 
   return result.toTextStreamResponse();
