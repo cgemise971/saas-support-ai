@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.cdnfonts.com/css/geist');
+        
+        body {
+            font-family: 'Inter', 'Geist', sans-serif;
+            background-color: #060e20;
+            color: #dee5ff;
+            overflow-x: hidden;
+        }
+
+        .font-syne { font-family: 'Syne', sans-serif; }
+        .font-geist { font-family: 'Geist', 'Inter', sans-serif; }
+
+        .mesh-gradient {
+            background: radial-gradient(at 50% 50%, rgba(163, 166, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(at 80% 20%, rgba(172, 138, 255, 0.1) 0%, transparent 40%),
+                        radial-gradient(at 20% 80%, rgba(140, 231, 255, 0.1) 0%, transparent 40%);
+        }
+
+        .grid-overlay {
+            background-image: linear-gradient(rgba(222, 229, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(222, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .glass-card {
+            background: rgba(25, 37, 64, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(109, 117, 140, 0.15);
+        }
+
+        .hero-glow {
+            filter: blur(120px);
+            background: linear-gradient(135deg, #a3a6ff, #ac8aff, #8ce7ff);
+            opacity: 0.2;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#d9c8ff",
+                      "surface-container-lowest": "#000000",
+                      "surface-variant": "#192540",
+                      "error": "#ff6e84",
+                      "tertiary-container": "#53ddfc",
+                      "primary-container": "#9396ff",
+                      "on-error": "#490013",
+                      "surface-container": "#0f1930",
+                      "surface-bright": "#1f2b49",
+                      "on-primary-container": "#0a0081",
+                      "secondary-dim": "#8455ef",
+                      "tertiary-fixed-dim": "#40ceed",
+                      "on-tertiary": "#005464",
+                      "tertiary-fixed": "#53ddfc",
+                      "secondary-fixed": "#dac9ff",
+                      "primary-dim": "#6063ee",
+                      "outline-variant": "#40485d",
+                      "on-tertiary-fixed": "#003640",
+                      "on-secondary": "#280067",
+                      "secondary-fixed-dim": "#ceb9ff",
+                      "on-error-container": "#ffb2b9",
+                      "on-background": "#dee5ff",
+                      "on-surface": "#dee5ff",
+                      "surface-container-highest": "#192540",
+                      "surface-tint": "#a3a6ff",
+                      "tertiary": "#8ce7ff",
+                      "tertiary-dim": "#40ceed",
+                      "background": "#060e20",
+                      "primary-fixed": "#9396ff",
+                      "primary-fixed-dim": "#8387ff",
+                      "primary": "#a3a6ff",
+                      "on-primary-fixed-variant": "#0e009d",
+                      "on-primary": "#0f00a4",
+                      "secondary": "#ac8aff",
+                      "surface-container-high": "#141f38",
+                      "on-tertiary-fixed-variant": "#005564",
+                      "on-secondary-fixed-variant": "#5f28c8",
+                      "on-primary-fixed": "#000000",
+                      "on-secondary-fixed": "#40009b",
+                      "surface": "#060e20",
+                      "inverse-primary": "#494bd7",
+                      "on-surface-variant": "#a3aac4",
+                      "surface-container-low": "#091328",
+                      "on-tertiary-container": "#004b58",
+                      "inverse-surface": "#faf8ff",
+                      "surface-dim": "#060e20",
+                      "error-dim": "#d73357",
+                      "outline": "#6d758c",
+                      "secondary-container": "#5516be",
+                      "inverse-on-surface": "#4d556b",
+                      "error-container": "#a70138"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Syne"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+<!-- Grid Texture & Mesh Base -->
+<div class="fixed inset-0 grid-overlay pointer-events-none z-0"></div>
+<div class="fixed inset-0 mesh-gradient pointer-events-none z-0"></div>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-[#060e20]/60 backdrop-blur-xl border-b border-white/5">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-6 h-16">
+<div class="flex items-center gap-8">
+<span class="font-['Syne'] text-xl font-bold tracking-tighter text-white">Onboard AI</span>
+<div class="hidden md:flex gap-6">
+<a class="font-['Geist'] text-sm tracking-tight text-slate-400 hover:text-white transition-colors" href="#">Features</a>
+<a class="font-['Geist'] text-sm tracking-tight text-slate-400 hover:text-white transition-colors" href="#">Solutions</a>
+<a class="font-['Geist'] text-sm tracking-tight text-slate-400 hover:text-white transition-colors" href="#">Pricing</a>
+<a class="font-['Geist'] text-sm tracking-tight text-slate-400 hover:text-white transition-colors" href="#">Docs</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-['Geist'] text-sm px-4 py-2 text-slate-400 hover:text-white transition-colors">Log In</button>
+<button class="font-['Geist'] text-sm px-5 py-2 bg-gradient-to-r from-primary to-secondary text-on-primary-fixed font-bold rounded-lg hover:scale-[1.02] transition-transform">Get Started</button>
+</div>
+</div>
+</nav>
+<main class="relative z-10 pt-32">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-6 text-center mb-40">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-error-container/20 border border-error/30 mb-8">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="text-error text-xs font-semibold tracking-wider uppercase">60% des nouveaux inscrits abandonnent en 7 jours</span>
+</div>
+<h1 class="font-syne text-6xl md:text-8xl font-extrabold tracking-tighter mb-8 bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent leading-tight">
+                Stoppez la perte <br/>d'utilisateurs
+            </h1>
+<div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-20">
+<button class="px-8 py-4 bg-gradient-to-r from-primary via-secondary to-tertiary text-on-primary-fixed font-bold rounded-xl text-lg shadow-[0_0_40px_rgba(163,166,255,0.3)] hover:scale-105 transition-all duration-300">
+                    Voir la démo interactive
+                </button>
+<button class="px-8 py-4 bg-surface-container-highest/50 border border-outline-variant/30 backdrop-blur-md rounded-xl text-lg font-medium hover:bg-surface-container-highest transition-colors">
+                    Tester le chatbot
+                </button>
+</div>
+<!-- Dashboard Mockup -->
+<div class="relative max-w-5xl mx-auto group">
+<div class="absolute -inset-20 hero-glow rounded-full -z-10 group-hover:scale-110 transition-transform duration-700"></div>
+<div class="relative glass-card rounded-2xl overflow-hidden shadow-2xl p-4 rotate-x-6 transform perspective-1000">
+<!-- Dashboard Mockup Internal Content -->
+<div class="bg-surface-container-lowest rounded-xl border border-white/5 aspect-video flex overflow-hidden">
+<!-- Sidebar -->
+<div class="w-48 border-r border-white/5 p-4 flex flex-col gap-4">
+<div class="h-4 w-24 bg-surface-variant rounded-full"></div>
+<div class="h-2 w-32 bg-white/5 rounded-full"></div>
+<div class="h-2 w-28 bg-white/5 rounded-full"></div>
+<div class="mt-auto h-8 w-full bg-primary/20 rounded-lg border border-primary/30"></div>
+</div>
+<!-- Main Area -->
+<div class="flex-1 p-8 text-left relative">
+<div class="flex justify-between items-start mb-8">
+<div>
+<div class="h-6 w-48 bg-white/10 rounded-full mb-3"></div>
+<div class="h-3 w-64 bg-white/5 rounded-full"></div>
+</div>
+<div class="flex gap-2">
+<div class="w-8 h-8 rounded-full bg-tertiary/20 border border-tertiary/30"></div>
+<div class="w-8 h-8 rounded-full bg-secondary/20 border border-secondary/30"></div>
+</div>
+</div>
+<!-- AI Chat Bubble Floating -->
+<div class="absolute top-1/4 right-8 w-64 glass-card p-4 rounded-2xl shadow-xl border-primary/20 animate-bounce transition-all duration-1000" style="animation-duration: 4s;">
+<div class="flex gap-3 items-center mb-2">
+<span class="material-symbols-outlined text-primary text-sm">smart_toy</span>
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase">AI Assistant</span>
+</div>
+<div class="space-y-2">
+<div class="h-2 w-full bg-white/10 rounded-full"></div>
+<div class="h-2 w-3/4 bg-white/10 rounded-full"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="bg-surface-container-high p-6 rounded-xl border border-white/5">
+<div class="h-2 w-12 bg-white/10 rounded-full mb-4"></div>
+<div class="h-8 w-20 bg-white/20 rounded-lg"></div>
+</div>
+<div class="bg-surface-container-high p-6 rounded-xl border border-white/5">
+<div class="h-2 w-12 bg-white/10 rounded-full mb-4"></div>
+<div class="h-8 w-20 bg-white/20 rounded-lg"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Elements Outside -->
+<div class="absolute -top-12 -left-12 glass-card p-4 rounded-xl shadow-2xl border-tertiary/20 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary flex items-center justify-center text-on-tertiary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<div class="text-[10px] text-slate-400 font-medium">Conversion Rate</div>
+<div class="text-xl font-bold">+24.5%</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem Section -->
+<section class="max-w-7xl mx-auto px-6 mb-40">
+<div class="text-center mb-20">
+<h2 class="font-syne text-4xl md:text-5xl font-bold mb-4">Votre onboarding tue la croissance</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto text-lg">Chaque minute de friction est un utilisateur perdu. La réalité de la rétention SaaS est brutale.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="glass-card p-10 rounded-2xl group hover:border-error/40 transition-all duration-500">
+<div class="text-5xl font-syne font-extrabold text-error mb-4">40-60%</div>
+<h3 class="text-xl font-bold mb-2">Churn Semaine 1</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Le pourcentage moyen d'utilisateurs qui ne reviennent jamais après leur première session.</p>
+</div>
+<div class="glass-card p-10 rounded-2xl group hover:border-primary/40 transition-all duration-500">
+<div class="text-5xl font-syne font-extrabold text-primary mb-4">45 min</div>
+<h3 class="text-xl font-bold mb-2">Temps de Valeur</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">C'est trop long. Si un utilisateur n'atteint pas l'Aha Moment en 5min, il s'en va.</p>
+</div>
+<div class="glass-card p-10 rounded-2xl group hover:border-tertiary/40 transition-all duration-500">
+<div class="text-5xl font-syne font-extrabold text-tertiary mb-4">0 EUR</div>
+<h3 class="text-xl font-bold mb-2">Revenus perdus</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Chaque inscription ratée est un MRR fantôme qui ne se concrétisera jamais.</p>
+</div>
+</div>
+</section>
+<!-- Solution Section -->
+<section class="max-w-7xl mx-auto px-6 mb-40">
+<div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
+<div class="max-w-xl">
+<h2 class="font-syne text-4xl md:text-5xl font-bold mb-4">Onboarding propulsé par l'IA</h2>
+<p class="text-on-surface-variant text-lg">Ne les laissez plus deviner. Guidez-les intelligemment avec une couche d'assistance prédictive.</p>
+</div>
+<div class="h-1 flex-1 bg-surface-container-highest mx-8 mb-4 rounded-full relative">
+<div class="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+</div>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="glass-card p-8 rounded-2xl border-l-4 border-l-primary hover:bg-surface-container-highest/60 transition-all cursor-default">
+<span class="material-symbols-outlined text-4xl text-primary mb-6" data-icon="person_search">person_search</span>
+<h4 class="text-lg font-bold mb-3">Guidage personnalisé</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">L'IA analyse le profil de l'utilisateur pour adapter le parcours en temps réel.</p>
+</div>
+<div class="glass-card p-8 rounded-2xl border-l-4 border-l-secondary hover:bg-surface-container-highest/60 transition-all cursor-default">
+<span class="material-symbols-outlined text-4xl text-secondary mb-6" data-icon="chat_bubble">chat_bubble</span>
+<h4 class="text-lg font-bold mb-3">Réponses en direct</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Un chatbot contextuel qui connaît votre interface et répond aux questions techniques.</p>
+</div>
+<div class="glass-card p-8 rounded-2xl border-l-4 border-l-tertiary hover:bg-surface-container-highest/60 transition-all cursor-default">
+<span class="material-symbols-outlined text-4xl text-tertiary mb-6" data-icon="bolt">bolt</span>
+<h4 class="text-lg font-bold mb-3">5x plus rapide</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Accélérez la courbe d'apprentissage en supprimant les didacticiels statiques ennuyeux.</p>
+</div>
+<div class="glass-card p-8 rounded-2xl border-l-4 border-l-on-background hover:bg-surface-container-highest/60 transition-all cursor-default">
+<span class="material-symbols-outlined text-4xl text-white mb-6" data-icon="analytics">analytics</span>
+<h4 class="text-lg font-bold mb-3">Impact mesurable</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Visualisez exactement où vos utilisateurs bloquent et comment l'IA les débloque.</p>
+</div>
+</div>
+</section>
+<!-- Before / After Section -->
+<section class="max-w-7xl mx-auto px-6 mb-40">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="order-2 md:order-1">
+<div class="space-y-6">
+<div class="p-6 rounded-2xl bg-surface-container-low border border-error/10 flex items-start gap-4 opacity-70">
+<span class="material-symbols-outlined text-error" data-icon="close">close</span>
+<div>
+<h5 class="font-bold text-error mb-1">Sans Onboard AI</h5>
+<p class="text-sm text-slate-500 italic">"Je ne comprends pas comment créer mon premier projet... Je verrai ça plus tard."</p>
+<div class="mt-4 flex gap-2">
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="bg-error w-1/4 h-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-8 rounded-2xl bg-surface-container border border-primary/20 flex items-start gap-4 shadow-2xl shadow-primary/10 scale-105 origin-left">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<div>
+<h5 class="font-bold text-primary mb-1">Avec Onboard AI</h5>
+<p class="text-sm text-on-surface italic">"L'assistant m'a montré exactement où cliquer. Projet créé en 30 secondes !"</p>
+<div class="mt-4 flex gap-2">
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary w-full h-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 md:order-2">
+<h2 class="font-syne text-4xl font-bold mb-6">La différence est immédiate</h2>
+<p class="text-on-surface-variant mb-8 text-lg">Ne laissez plus vos utilisateurs dans le noir. Transformez la confusion en clarté avec une assistance IA native qui connaît votre produit par cœur.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm">done_all</span>
+<span class="text-on-surface">Réduction du support client de 40%</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm">done_all</span>
+<span class="text-on-surface">Activation utilisateur multipliée par 2.5</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm">done_all</span>
+<span class="text-on-surface">Intégration en moins de 15 minutes</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-5xl mx-auto px-6 mb-32">
+<div class="relative glass-card p-12 md:p-20 rounded-[2rem] text-center overflow-hidden border-primary/20">
+<!-- Background Decoration -->
+<div class="absolute -top-1/2 -left-1/2 w-full h-full bg-primary/20 blur-[120px]"></div>
+<div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-secondary/20 blur-[120px]"></div>
+<h2 class="relative font-syne text-4xl md:text-5xl font-bold mb-8">Envie de ça pour votre SaaS ?</h2>
+<p class="relative text-on-surface-variant text-lg max-w-xl mx-auto mb-12">Rejoignez les 200+ entreprises qui ont automatisé leur succès avec Onboard AI.</p>
+<button class="relative px-12 py-5 bg-gradient-to-r from-primary via-secondary to-tertiary text-on-primary-fixed font-bold rounded-2xl text-xl shadow-[0_0_50px_rgba(163,166,255,0.4)] hover:scale-105 transition-all">
+                    Commencer l'essai gratuit
+                </button>
+<p class="relative mt-8 text-sm text-slate-500">Pas de carte de crédit requise. Installation en 1 ligne de code.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-[#060e20] border-t border-white/5 relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-6 gap-8">
+<div class="flex flex-col gap-2">
+<span class="font-['Syne'] text-xl font-bold tracking-tighter text-white">Onboard AI</span>
+<p class="font-['Geist'] text-xs uppercase tracking-[0.05em] text-slate-500">© 2024 Onboard AI. Engineering the future of autonomy.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-['Geist'] text-xs uppercase tracking-[0.05em] text-slate-500 hover:text-[#8ce7ff] transition-colors" href="#">Privacy</a>
+<a class="font-['Geist'] text-xs uppercase tracking-[0.05em] text-slate-500 hover:text-[#8ce7ff] transition-colors" href="#">Terms</a>
+<a class="font-['Geist'] text-xs uppercase tracking-[0.05em] text-slate-500 hover:text-[#8ce7ff] transition-colors" href="#">Twitter</a>
+<a class="font-['Geist'] text-xs uppercase tracking-[0.05em] text-slate-500 hover:text-[#8ce7ff] transition-colors" href="#">GitHub</a>
+</div>
+</div>
+</footer>
+<!-- Decorative elements -->
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[150px] -z-10 rounded-full"></div>
+<div class="fixed bottom-0 left-0 w-[500px] h-[500px] bg-tertiary/10 blur-[150px] -z-10 rounded-full"></div>
+</body></html>

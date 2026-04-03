@@ -149,6 +149,14 @@
   border: 1px solid rgba(148, 163, 184, 0.06);
 }
 
+/* glass-card — matches Stitch design (slightly lighter bg + stronger backdrop) */
+.glass-card {
+  background: rgba(25, 37, 64, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(109, 117, 140, 0.15);
+}
+
 /* ---------- Glow effects ---------- */
 .glow-indigo {
   box-shadow: 0 0 40px rgba(99, 102, 241, 0.12), 0 0 80px rgba(99, 102, 241, 0.06);
@@ -156,6 +164,29 @@
 
 .glow-emerald {
   box-shadow: 0 0 40px rgba(16, 185, 129, 0.12), 0 0 80px rgba(16, 185, 129, 0.06);
+}
+
+/* ---------- Hero glow blob ---------- */
+.hero-glow {
+  filter: blur(120px);
+  background: linear-gradient(135deg, #818CF8, #C084FC, #67E8F9);
+  opacity: 0.18;
+}
+
+/* ---------- Mesh gradient (reusable) ---------- */
+.mesh-gradient {
+  background:
+    radial-gradient(at 50% 50%, rgba(129, 140, 248, 0.12) 0%, transparent 50%),
+    radial-gradient(at 80% 20%, rgba(192, 132, 252, 0.09) 0%, transparent 40%),
+    radial-gradient(at 20% 80%, rgba(103, 232, 249, 0.09) 0%, transparent 40%);
+}
+
+/* ---------- Grid overlay (reusable) ---------- */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(222, 229, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(222, 229, 255, 0.025) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 /* ---------- Scrollbar ---------- */
