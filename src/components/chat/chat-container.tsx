@@ -5,13 +5,13 @@ import { TextStreamChatTransport, type UIMessage } from "ai";
 import { useRef, useEffect } from "react";
 import { ChatMessage } from "./chat-message";
 import { ChatInput } from "./chat-input";
-import { Bot, Sparkles } from "lucide-react";
+import { IconLogo, IconChat } from "@/components/ui/custom-icons";
 
 const SUGGESTIONS = [
-  "How do I get started?",
-  "What are the pricing plans?",
-  "How do I track events?",
-  "What integrations are available?",
+  "Comment demarrer ?",
+  "Quels sont les tarifs ?",
+  "Comment suivre les evenements ?",
+  "Quelles integrations disponibles ?",
 ];
 
 const transport = new TextStreamChatTransport({ api: "/api/chat" });
@@ -45,26 +45,26 @@ export function ChatContainer() {
         {messages.length === 0 ? (
           <div className="flex h-full flex-col items-center justify-center px-4">
             <div className="relative mb-6">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-violet-600">
-                <Bot className="h-8 w-8 text-white" />
+              <IconLogo className="h-16 w-16" />
+              <div className="absolute inset-0 blur-xl opacity-30">
+                <IconLogo className="h-16 w-16" />
               </div>
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500 to-violet-600 opacity-30 blur-xl" />
             </div>
-            <h2 className="mb-2 text-lg font-semibold text-white">
-              Acme Analytics Support
+            <h2 className="mb-2 font-[family-name:var(--font-syne)] text-lg font-bold text-white">
+              Support Acme Analytics
             </h2>
-            <p className="mb-8 max-w-sm text-center text-sm text-[#6b6b80]">
-              Ask me anything about Acme Analytics. I have access to all product
-              documentation.
+            <p className="mb-8 max-w-sm text-center text-sm text-[#94A3B8]">
+              Posez-moi n&apos;importe quelle question sur Acme Analytics.
+              J&apos;ai acces a toute la documentation produit.
             </p>
             <div className="flex flex-wrap justify-center gap-2">
               {SUGGESTIONS.map((suggestion) => (
                 <button
                   key={suggestion}
                   onClick={() => handleSend(suggestion)}
-                  className="flex items-center gap-1.5 rounded-full border border-white/5 bg-white/[0.03] px-4 py-2 text-xs text-[#6b6b80] transition-all hover:border-blue-500/30 hover:bg-blue-500/5 hover:text-blue-400"
+                  className="flex items-center gap-1.5 rounded-full border border-[#334155]/50 bg-[#1E293B]/30 px-4 py-2 text-xs text-[#94A3B8] transition-all hover:border-[#6366F1]/30 hover:bg-[#6366F1]/5 hover:text-[#818CF8]"
                 >
-                  <Sparkles className="h-3 w-3" />
+                  <IconChat className="h-3 w-3" />
                   {suggestion}
                 </button>
               ))}
@@ -81,13 +81,15 @@ export function ChatContainer() {
             ))}
             {isLoading && messages[messages.length - 1]?.role === "user" && (
               <div className="flex gap-3 px-4 py-3">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-violet-600">
-                  <Bot className="h-3.5 w-3.5 text-white" />
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center">
+                  <IconLogo className="h-7 w-7" />
                 </div>
-                <div className="flex items-center gap-1.5 rounded-xl bg-white/[0.03] border border-white/5 px-4 py-2.5">
-                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-blue-400 [animation-delay:0ms]" />
-                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-violet-400 [animation-delay:150ms]" />
-                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-cyan-400 [animation-delay:300ms]" />
+                <div className="rounded-xl bg-[#1E293B]/50 border border-[#334155]/30 px-4 py-2.5">
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#818CF8] [animation-delay:0ms]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#C084FC] [animation-delay:150ms]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#67E8F9] [animation-delay:300ms]" />
+                  </div>
                 </div>
               </div>
             )}

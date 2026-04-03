@@ -1,234 +1,273 @@
 import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
+import { AnimatedBackground } from "@/components/ui/animated-background";
 import {
-  Bot,
-  ArrowRight,
-  Clock,
-  TrendingDown,
-  UserX,
-  Sparkles,
-  CheckCircle2,
-  BarChart3,
-  MessageSquare,
-  Zap,
-  Shield,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/ui/scroll-reveal";
+import {
+  IconOnboarding,
+  IconSpeed,
+  IconChart,
+  IconChat,
+  IconShield,
+  IconTarget,
+  IconLogo,
+} from "@/components/ui/custom-icons";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#0a0b14]">
-      {/* Background layers */}
-      <div className="pointer-events-none fixed inset-0">
-        {/* Gradient orbs */}
-        <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[120px]" />
-        <div className="absolute top-1/3 -right-20 h-[400px] w-[400px] rounded-full bg-violet-600/8 blur-[100px]" />
-        <div className="absolute bottom-0 left-1/3 h-[300px] w-[300px] rounded-full bg-cyan-500/6 blur-[80px]" />
-        {/* Dot grid */}
-        <div className="absolute inset-0 bg-grid" />
-      </div>
+    <div className="relative min-h-screen bg-[#0F172A]">
+      <AnimatedBackground />
 
       {/* Header */}
-      <header className="glass-strong sticky top-0 z-50">
+      <header className="glass sticky top-0 z-50">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <div className="flex items-center gap-2.5">
-            <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-violet-600">
-              <Bot className="h-4 w-4 text-white" />
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 opacity-50 blur-md" />
-            </div>
-            <span className="text-sm font-semibold tracking-tight text-white">
+            <IconLogo className="h-8 w-8" />
+            <span className="font-[family-name:var(--font-syne)] text-base font-bold tracking-tight text-white">
               Onboard AI
             </span>
           </div>
           <Link href="/demo">
-            <Button className="gap-2 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 px-5 text-sm font-medium text-white hover:from-blue-500 hover:to-violet-500">
-              Try the demo
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Button>
+            <button className="group flex items-center gap-2 rounded-full bg-[#6366F1] px-5 py-2 text-sm font-medium text-white transition-all hover:bg-[#818CF8] hover:shadow-[0_0_24px_rgba(99,102,241,0.3)]">
+              Essayer la demo
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            </button>
           </Link>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="relative z-10 mx-auto max-w-6xl px-6 pt-24 pb-20 text-center">
-        <div className="animate-fade-in mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/5 px-4 py-1.5 text-sm text-red-400">
-          <UserX className="h-3.5 w-3.5" />
-          60% of new signups churn in 7 days
-        </div>
-        <h1 className="animate-slide-up mb-6 text-5xl font-bold tracking-tight leading-[1.1] text-white md:text-6xl lg:text-7xl">
-          Stop losing users to
-          <br />
-          <span className="gradient-text">bad onboarding</span>
-        </h1>
-        <p className="animate-slide-up mx-auto mb-10 max-w-xl text-lg leading-relaxed text-[#6b6b80] [animation-delay:0.1s]">
-          An AI assistant that guides every new user through your SaaS,
-          personalized to their role. Get them to value 5x faster.
-        </p>
-        <div className="animate-slide-up flex items-center justify-center gap-4 [animation-delay:0.2s]">
-          <Link href="/demo">
-            <button className="glow-blue-strong group flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 px-7 py-3 text-sm font-medium text-white transition-all hover:scale-[1.02]">
-              <Sparkles className="h-4 w-4" />
-              See it in action
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </button>
-          </Link>
-          <Link href="/chat">
-            <button className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-7 py-3 text-sm font-medium text-[#c8c8d8] transition-all hover:border-white/20 hover:bg-white/8">
-              <MessageSquare className="h-4 w-4" />
-              Try the chatbot
-            </button>
-          </Link>
+      <section className="relative z-10 mx-auto max-w-5xl px-6 pt-28 pb-24 text-center">
+        <ScrollReveal>
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#EF4444]/20 bg-[#EF4444]/5 px-4 py-2 text-sm text-[#FCA5A5]">
+            <IconTarget className="h-4 w-4" />
+            60% des nouveaux inscrits abandonnent en 7 jours
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.1}>
+          <h1 className="font-[family-name:var(--font-syne)] text-5xl font-extrabold leading-[1.08] tracking-tight text-white md:text-6xl lg:text-[4.5rem]">
+            Stoppez la perte
+            <br />
+            <span className="gradient-text">d&apos;utilisateurs</span>
+          </h1>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.2}>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[#94A3B8]">
+            Un assistant IA qui guide chaque nouvel utilisateur dans votre SaaS,
+            adapte a son profil. Atteignez la valeur{" "}
+            <strong className="text-[#CBD5E1]">5x plus vite</strong>.
+          </p>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.3}>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link href="/demo">
+              <button className="group flex items-center gap-2.5 rounded-full bg-[#6366F1] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_0_32px_rgba(99,102,241,0.2)] transition-all hover:bg-[#818CF8] hover:shadow-[0_0_48px_rgba(99,102,241,0.3)]">
+                Voir la demo interactive
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </button>
+            </Link>
+            <Link href="/chat">
+              <button className="flex items-center gap-2 rounded-full border border-[#334155] bg-[#1E293B]/50 px-8 py-3.5 text-sm font-medium text-[#CBD5E1] transition-all hover:border-[#475569] hover:bg-[#1E293B]">
+                <IconChat className="h-4 w-4" />
+                Tester le chatbot
+              </button>
+            </Link>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* Problem */}
+      <section className="relative z-10 border-t border-[#1E293B] py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal>
+            <p className="mb-3 text-center font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-[0.2em] text-[#EF4444]/70">
+              Le probleme
+            </p>
+            <h2 className="mb-5 text-center font-[family-name:var(--font-syne)] text-3xl font-bold tracking-tight text-white md:text-4xl">
+              Votre onboarding tue la croissance
+            </h2>
+            <p className="mx-auto mb-16 max-w-md text-center text-[#94A3B8]">
+              La majorite des produits SaaS perdent leurs utilisateurs avant
+              qu&apos;ils ne decouvrent la valeur reelle.
+            </p>
+          </ScrollReveal>
+
+          <StaggerContainer className="grid gap-5 md:grid-cols-3">
+            <StaggerItem>
+              <ProblemCard
+                stat="40–60%"
+                label="abandonnent en semaine 1"
+                description="Les utilisateurs s'inscrivent, se perdent dans l'interface, et ne reviennent jamais."
+              />
+            </StaggerItem>
+            <StaggerItem>
+              <ProblemCard
+                stat="45 min"
+                label="avant la premiere valeur"
+                description="Trop d'etapes, pas assez de guidage. Ils abandonnent avant de voir les resultats."
+              />
+            </StaggerItem>
+            <StaggerItem>
+              <ProblemCard
+                stat="0 €"
+                label="de revenus perdus"
+                description="Chaque utilisateur perdu est du CAC gaspille. Vous avez paye pour rien."
+              />
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
-      {/* Problem section */}
-      <section className="relative z-10 border-t border-white/5 py-24">
+      {/* Solution */}
+      <section className="relative z-10 py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="mb-3 text-center text-sm font-medium uppercase tracking-widest text-blue-400">
-            The problem
-          </p>
-          <h2 className="mb-4 text-center text-3xl font-bold tracking-tight text-white md:text-4xl">
-            Your onboarding is killing growth
-          </h2>
-          <p className="mx-auto mb-16 max-w-lg text-center text-[#6b6b80]">
-            Most SaaS products lose the majority of new users before they ever
-            experience the core value.
-          </p>
-          <div className="stagger-children grid gap-6 md:grid-cols-3">
-            <ProblemCard
-              icon={<TrendingDown className="h-5 w-5 text-red-400" />}
-              stat="40–60%"
-              label="churn in week 1"
-              description="Users sign up, get confused, and never come back."
-            />
-            <ProblemCard
-              icon={<Clock className="h-5 w-5 text-amber-400" />}
-              stat="45 min"
-              label="average time to first value"
-              description="Too many steps, too little guidance. Users give up."
-            />
-            <ProblemCard
-              icon={<UserX className="h-5 w-5 text-red-400" />}
-              stat="$0"
-              label="revenue from churned users"
-              description="Every lost user is wasted CAC. You paid and got nothing."
-            />
-          </div>
-        </div>
-      </section>
+          <ScrollReveal>
+            <p className="mb-3 text-center font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-[0.2em] text-[#6366F1]">
+              La solution
+            </p>
+            <h2 className="mb-5 text-center font-[family-name:var(--font-syne)] text-3xl font-bold tracking-tight text-white md:text-4xl">
+              Onboarding propulse par l&apos;IA
+            </h2>
+            <p className="mx-auto mb-16 max-w-md text-center text-[#94A3B8]">
+              Un assistant intelligent qui connait votre produit et amene chaque
+              utilisateur a son moment &ldquo;aha&rdquo;.
+            </p>
+          </ScrollReveal>
 
-      {/* Solution section */}
-      <section className="relative z-10 py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <p className="mb-3 text-center text-sm font-medium uppercase tracking-widest text-violet-400">
-            The solution
-          </p>
-          <h2 className="mb-4 text-center text-3xl font-bold tracking-tight text-white md:text-4xl">
-            AI-powered onboarding
-          </h2>
-          <p className="mx-auto mb-16 max-w-lg text-center text-[#6b6b80]">
-            An intelligent assistant that knows your product and guides each
-            user to their &ldquo;aha moment&rdquo; — fast.
-          </p>
-          <div className="stagger-children grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            <SolutionCard
-              icon={<Bot className="h-5 w-5" />}
-              title="Personalized guidance"
-              description="Adapts to the user's role and goals. No generic tours."
-              color="blue"
-            />
-            <SolutionCard
-              icon={<MessageSquare className="h-5 w-5" />}
-              title="Live answers"
-              description="Trained on your docs. Instant answers without leaving the app."
-              color="violet"
-            />
-            <SolutionCard
-              icon={<Zap className="h-5 w-5" />}
-              title="5x faster activation"
-              description="Users reach value in minutes, not hours."
-              color="cyan"
-            />
-            <SolutionCard
-              icon={<BarChart3 className="h-5 w-5" />}
-              title="Measurable impact"
-              description="Track completion, time-to-value, and drop-off points."
-              color="emerald"
-            />
-          </div>
+          <StaggerContainer className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <StaggerItem>
+              <SolutionCard
+                icon={<IconOnboarding className="h-6 w-6" />}
+                title="Guidage personnalise"
+                description="S'adapte au role et aux objectifs de chaque utilisateur. Pas de tour generique."
+              />
+            </StaggerItem>
+            <StaggerItem>
+              <SolutionCard
+                icon={<IconChat className="h-6 w-6" />}
+                title="Reponses en direct"
+                description="Entraine sur votre doc. Reponses instantanees sans quitter l'app."
+              />
+            </StaggerItem>
+            <StaggerItem>
+              <SolutionCard
+                icon={<IconSpeed className="h-6 w-6" />}
+                title="5x plus rapide"
+                description="Vos utilisateurs atteignent la valeur en minutes, pas en heures."
+              />
+            </StaggerItem>
+            <StaggerItem>
+              <SolutionCard
+                icon={<IconChart className="h-6 w-6" />}
+                title="Impact mesurable"
+                description="Suivez le taux de completion, le time-to-value et les points d'abandon."
+              />
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Before/After */}
-      <section className="relative z-10 border-t border-white/5 py-24">
+      <section className="relative z-10 border-t border-[#1E293B] py-28">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="mb-16 text-center text-3xl font-bold tracking-tight text-white md:text-4xl">
-            Before vs. After
-          </h2>
+          <ScrollReveal>
+            <h2 className="mb-16 text-center font-[family-name:var(--font-syne)] text-3xl font-bold tracking-tight text-white md:text-4xl">
+              Avant vs. Apres
+            </h2>
+          </ScrollReveal>
+
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="glass rounded-2xl p-6">
-              <div className="mb-5 flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-red-400" />
-                <h3 className="text-sm font-semibold text-red-400">Without AI Onboarding</h3>
+            <ScrollReveal delay={0.1}>
+              <div className="glass rounded-2xl p-7">
+                <div className="mb-6 flex items-center gap-2.5">
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#EF4444]/60" />
+                  <h3 className="font-[family-name:var(--font-syne)] text-sm font-bold text-[#FCA5A5]">
+                    Sans onboarding IA
+                  </h3>
+                </div>
+                <ul className="space-y-4 text-sm text-[#94A3B8]">
+                  {[
+                    "Tours produit generiques que personne ne lit",
+                    "45 min en moyenne avant la premiere valeur",
+                    "60% de churn la premiere semaine",
+                    "Tickets support d'utilisateurs perdus",
+                    "Le meme parcours pour le CEO et le dev",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-1 text-xs text-[#EF4444]/50">&#x2717;</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-3 text-sm text-[#6b6b80]">
-                <li className="flex gap-2.5"><span className="mt-0.5 text-red-500/60">&#x2717;</span> Generic product tours nobody reads</li>
-                <li className="flex gap-2.5"><span className="mt-0.5 text-red-500/60">&#x2717;</span> 45 min average to first value</li>
-                <li className="flex gap-2.5"><span className="mt-0.5 text-red-500/60">&#x2717;</span> 60% churn in first week</li>
-                <li className="flex gap-2.5"><span className="mt-0.5 text-red-500/60">&#x2717;</span> Support tickets from confused users</li>
-                <li className="flex gap-2.5"><span className="mt-0.5 text-red-500/60">&#x2717;</span> Same flow for CEO and developer</li>
-              </ul>
-            </div>
-            <div className="gradient-border glass rounded-2xl p-6 glow-blue">
-              <div className="mb-5 flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-emerald-400" />
-                <h3 className="text-sm font-semibold text-emerald-400">With AI Onboarding</h3>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2}>
+              <div className="glass rounded-2xl p-7 glow-indigo">
+                <div className="mb-6 flex items-center gap-2.5">
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#34D399]" />
+                  <h3 className="font-[family-name:var(--font-syne)] text-sm font-bold text-[#6EE7B7]">
+                    Avec onboarding IA
+                  </h3>
+                </div>
+                <ul className="space-y-4 text-sm text-[#CBD5E1]">
+                  {[
+                    "Guidage personnalise selon le role",
+                    "5 min en moyenne avant la premiere valeur",
+                    "2x plus d'activation",
+                    "80% de tickets support en moins",
+                    "Experience sur-mesure pour chaque utilisateur",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#34D399]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-3 text-sm text-[#c8c8d8]">
-                <li className="flex gap-2.5"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /> Personalized guidance per role</li>
-                <li className="flex gap-2.5"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /> 5 min average to first value</li>
-                <li className="flex gap-2.5"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /> 2x higher activation rate</li>
-                <li className="flex gap-2.5"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /> 80% fewer support tickets</li>
-                <li className="flex gap-2.5"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /> Every user gets a tailored experience</li>
-              </ul>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="relative z-10 py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <div className="gradient-border glass rounded-3xl px-8 py-16 glow-violet">
-            <Shield className="mx-auto mb-4 h-8 w-8 text-violet-400" />
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">
-              Want this for your SaaS?
-            </h2>
-            <p className="mx-auto mb-8 max-w-md text-[#6b6b80]">
-              I build AI-powered onboarding systems for SaaS startups.
-              Production-ready in 4–6 weeks. Reduce churn from day one.
-            </p>
-            <a
-              href="https://calendly.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button className="glow-blue-strong group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 px-8 py-3.5 text-sm font-medium text-white transition-all hover:scale-[1.02]">
-                Book a free 30-min audit
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </button>
-            </a>
-          </div>
+      <section className="relative z-10 py-28">
+        <div className="mx-auto max-w-3xl px-6">
+          <ScrollReveal>
+            <div className="glass glow-indigo rounded-3xl px-8 py-16 text-center">
+              <IconShield className="mx-auto mb-5 h-10 w-10" />
+              <h2 className="mb-4 font-[family-name:var(--font-syne)] text-3xl font-bold tracking-tight text-white">
+                Envie de ca pour votre SaaS ?
+              </h2>
+              <p className="mx-auto mb-10 max-w-md text-[#94A3B8]">
+                Je construis des systemes d&apos;onboarding intelligents pour les startups
+                SaaS. Pret en production en 4-6 semaines.
+              </p>
+              <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">
+                <button className="group inline-flex items-center gap-2.5 rounded-full bg-[#6366F1] px-8 py-4 text-sm font-semibold text-white shadow-[0_0_32px_rgba(99,102,241,0.2)] transition-all hover:bg-[#818CF8] hover:shadow-[0_0_48px_rgba(99,102,241,0.3)]">
+                  Reservez un audit gratuit de 30 min
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </button>
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/5 py-8">
-        <div className="mx-auto max-w-6xl px-6 text-center text-sm text-[#6b6b80]">
-          Built by{" "}
-          <a href="#" className="text-blue-400 hover:text-blue-300">
-            Your Name
+      <footer className="relative z-10 border-t border-[#1E293B] py-10">
+        <div className="mx-auto max-w-6xl px-6 text-center text-sm text-[#475569]">
+          Concu par{" "}
+          <a href="#" className="text-[#818CF8] hover:text-[#A5B4FC] transition-colors">
+            Votre Nom
           </a>{" "}
-          — AI infrastructure for SaaS startups
+          — Infrastructure IA pour startups SaaS
         </div>
       </footer>
     </div>
@@ -236,24 +275,21 @@ export default function Home() {
 }
 
 function ProblemCard({
-  icon,
   stat,
   label,
   description,
 }: {
-  icon: React.ReactNode;
   stat: string;
   label: string;
   description: string;
 }) {
   return (
-    <div className="glass gradient-border rounded-2xl p-6 text-center transition-all hover:bg-white/[0.04]">
-      <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white/5">
-        {icon}
-      </div>
-      <p className="text-3xl font-bold tracking-tight text-white">{stat}</p>
-      <p className="mb-2 text-sm font-medium text-[#c8c8d8]">{label}</p>
-      <p className="text-xs leading-relaxed text-[#6b6b80]">{description}</p>
+    <div className="glass rounded-2xl p-7 text-center transition-all duration-300 hover:bg-[#1E293B]/70">
+      <p className="font-[family-name:var(--font-syne)] text-4xl font-extrabold tracking-tight text-white">
+        {stat}
+      </p>
+      <p className="mt-1 text-sm font-medium text-[#CBD5E1]">{label}</p>
+      <p className="mt-3 text-xs leading-relaxed text-[#94A3B8]">{description}</p>
     </div>
   );
 }
@@ -262,27 +298,18 @@ function SolutionCard({
   icon,
   title,
   description,
-  color,
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
-  color: string;
 }) {
-  const colorMap: Record<string, string> = {
-    blue: "from-blue-500/20 to-blue-500/5 text-blue-400",
-    violet: "from-violet-500/20 to-violet-500/5 text-violet-400",
-    cyan: "from-cyan-500/20 to-cyan-500/5 text-cyan-400",
-    emerald: "from-emerald-500/20 to-emerald-500/5 text-emerald-400",
-  };
-
   return (
-    <div className="glass rounded-2xl p-5 transition-all hover:bg-white/[0.04]">
-      <div className={`mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-b ${colorMap[color]}`}>
-        {icon}
-      </div>
-      <h3 className="mb-1.5 text-sm font-semibold text-white">{title}</h3>
-      <p className="text-xs leading-relaxed text-[#6b6b80]">{description}</p>
+    <div className="glass rounded-2xl p-6 transition-all duration-300 hover:bg-[#1E293B]/70">
+      <div className="mb-4">{icon}</div>
+      <h3 className="mb-2 font-[family-name:var(--font-syne)] text-sm font-bold text-white">
+        {title}
+      </h3>
+      <p className="text-xs leading-relaxed text-[#94A3B8]">{description}</p>
     </div>
   );
 }
