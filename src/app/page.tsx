@@ -14,6 +14,7 @@ import {
   IconTarget,
   IconLogo,
 } from "@/components/ui/custom-icons";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { HeroDashboard } from "@/components/HeroDashboard";
 
 export default function Home() {
@@ -130,31 +131,53 @@ export default function Home() {
 
           <StaggerContainer className="grid md:grid-cols-3 gap-8">
             <StaggerItem>
-              <ProblemCard
-                stat="40–60%"
-                color="text-[#FCA5A5]"
-                hoverBorder="hover:border-[#EF4444]/40"
-                label="Churn Semaine 1"
-                description="Le pourcentage moyen d'utilisateurs qui ne reviennent jamais après leur première session."
-              />
+              <div className="glass-card p-10 rounded-2xl group transition-all duration-500 hover:border-[#EF4444]/40 text-center">
+                <div className="font-[family-name:var(--font-syne)] text-5xl font-extrabold mb-1 text-[#FCA5A5]">
+                  <AnimatedCounter value={60} suffix="%" duration={2} className="font-[family-name:var(--font-syne)] text-5xl font-extrabold text-[#FCA5A5]" />
+                </div>
+                <h3 className="text-lg font-bold mb-2 text-[#F1F5F9]">Churn Semaine 1</h3>
+                <p className="text-[#94A3B8] text-sm leading-relaxed">Le pourcentage moyen d&apos;utilisateurs qui ne reviennent jamais apres leur premiere session.</p>
+                {/* Mini bar visualization */}
+                <div className="mt-5 flex gap-1 justify-center">
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <div key={i} className={`h-8 w-2 rounded-full transition-all duration-500 ${i < 6 ? "bg-[#EF4444]/40" : "bg-white/5"}`} style={{ height: `${20 + Math.random() * 20}px` }} />
+                  ))}
+                </div>
+              </div>
             </StaggerItem>
             <StaggerItem>
-              <ProblemCard
-                stat="45 min"
-                color="text-[#818CF8]"
-                hoverBorder="hover:border-[#6366F1]/40"
-                label="Temps de Valeur"
-                description="C'est trop long. Si un utilisateur n'atteint pas l'Aha Moment en 5 min, il s'en va."
-              />
+              <div className="glass-card p-10 rounded-2xl group transition-all duration-500 hover:border-[#6366F1]/40 text-center">
+                <div className="font-[family-name:var(--font-syne)] text-5xl font-extrabold mb-1 text-[#818CF8]">
+                  <AnimatedCounter value={45} suffix=" min" duration={1.8} className="font-[family-name:var(--font-syne)] text-5xl font-extrabold text-[#818CF8]" />
+                </div>
+                <h3 className="text-lg font-bold mb-2 text-[#F1F5F9]">Temps de Valeur</h3>
+                <p className="text-[#94A3B8] text-sm leading-relaxed">C&apos;est trop long. Si un utilisateur n&apos;atteint pas l&apos;Aha Moment en 5 min, il s&apos;en va.</p>
+                {/* Circular progress */}
+                <div className="mt-5 flex justify-center">
+                  <svg width="60" height="60" viewBox="0 0 60 60">
+                    <circle cx="30" cy="30" r="24" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="4" />
+                    <circle cx="30" cy="30" r="24" fill="none" stroke="#6366F1" strokeWidth="4" strokeLinecap="round"
+                      strokeDasharray="150.8" strokeDashoffset="25" opacity="0.5"
+                      style={{ transform: "rotate(-90deg)", transformOrigin: "center" }} />
+                    <text x="30" y="34" textAnchor="middle" fill="#818CF8" fontSize="12" fontWeight="bold">9x</text>
+                  </svg>
+                </div>
+              </div>
             </StaggerItem>
             <StaggerItem>
-              <ProblemCard
-                stat="0 EUR"
-                color="text-[#67E8F9]"
-                hoverBorder="hover:border-[#06B6D4]/40"
-                label="Revenus perdus"
-                description="Chaque inscription ratée est un MRR fantôme qui ne se concrétisera jamais."
-              />
+              <div className="glass-card p-10 rounded-2xl group transition-all duration-500 hover:border-[#06B6D4]/40 text-center">
+                <div className="font-[family-name:var(--font-syne)] text-5xl font-extrabold mb-1 text-[#67E8F9]">
+                  <AnimatedCounter value={0} prefix="" suffix=" €" duration={0.5} className="font-[family-name:var(--font-syne)] text-5xl font-extrabold text-[#67E8F9]" />
+                </div>
+                <h3 className="text-lg font-bold mb-2 text-[#F1F5F9]">Revenus perdus</h3>
+                <p className="text-[#94A3B8] text-sm leading-relaxed">Chaque inscription ratee est un MRR fantome qui ne se concretisera jamais.</p>
+                {/* Declining chart */}
+                <div className="mt-5 flex items-end gap-1 justify-center h-10">
+                  {[80, 65, 50, 38, 28, 18, 10, 5].map((h, i) => (
+                    <div key={i} className="w-2 rounded-full bg-[#06B6D4]/30" style={{ height: `${h}%` }} />
+                  ))}
+                </div>
+              </div>
             </StaggerItem>
           </StaggerContainer>
         </section>
@@ -383,34 +406,6 @@ export default function Home() {
 }
 
 /* ── Sub-components ────────────────────────────────────────────── */
-
-function ProblemCard({
-  stat,
-  color,
-  hoverBorder,
-  label,
-  description,
-}: {
-  stat: string;
-  color: string;
-  hoverBorder: string;
-  label: string;
-  description: string;
-}) {
-  return (
-    <div
-      className={`glass-card p-10 rounded-2xl group transition-all duration-500 ${hoverBorder} hover:border-opacity-100`}
-    >
-      <div
-        className={`font-[family-name:var(--font-syne)] text-5xl font-extrabold mb-4 ${color}`}
-      >
-        {stat}
-      </div>
-      <h3 className="text-xl font-bold mb-2 text-[#F1F5F9]">{label}</h3>
-      <p className="text-[#94A3B8] text-sm leading-relaxed">{description}</p>
-    </div>
-  );
-}
 
 function SolutionCard({
   icon,
