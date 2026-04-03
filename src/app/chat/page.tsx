@@ -1,41 +1,37 @@
 import Link from "next/link";
 import { Bot, ArrowLeft, FileText } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ChatContainer } from "@/components/chat/chat-container";
 
 export default function ChatPage() {
   return (
-    <div className="flex h-screen flex-col bg-white dark:bg-zinc-950">
+    <div className="flex h-screen flex-col bg-[#0a0b14] bg-grid-dense">
       {/* Header */}
-      <header className="flex items-center justify-between border-b border-zinc-100 px-4 py-3 dark:border-zinc-800">
+      <header className="glass-strong flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3">
           <Link href="/">
-            <Button variant="ghost" size="icon" className="h-8 w-8">
+            <button className="flex h-7 w-7 items-center justify-center rounded-lg text-[#6b6b80] transition-colors hover:bg-white/5 hover:text-white">
               <ArrowLeft className="h-4 w-4" />
-            </Button>
+            </button>
           </Link>
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-violet-600">
               <Bot className="h-4 w-4 text-white" />
             </div>
             <div>
-              <h1 className="text-sm font-semibold text-zinc-900 dark:text-white">
+              <h1 className="text-sm font-semibold text-white">
                 Acme Analytics Support
               </h1>
-              <p className="text-xs text-zinc-500">AI assistant</p>
+              <p className="text-[10px] text-[#6b6b80]">AI assistant</p>
             </div>
           </div>
-          <Badge
-            variant="secondary"
-            className="ml-2 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-400"
-          >
-            Online
-          </Badge>
+          <div className="ml-2 flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1">
+            <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-glow-pulse" />
+            <span className="text-[10px] font-medium text-emerald-400">Online</span>
+          </div>
         </div>
-        <div className="flex items-center gap-2 text-xs text-zinc-400">
-          <FileText className="h-3.5 w-3.5" />
-          4 docs indexed
+        <div className="flex items-center gap-1.5 text-[10px] text-[#6b6b80]">
+          <FileText className="h-3 w-3" />
+          5 docs indexed
         </div>
       </header>
 

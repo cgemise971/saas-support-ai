@@ -7,7 +7,6 @@ import { useOnboardingStore } from "@/lib/store";
 import { ChatMessage } from "@/components/chat/chat-message";
 import { ChatInput } from "@/components/chat/chat-input";
 import { Bot, X, MessageSquare } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const transport = new TextStreamChatTransport({ api: "/api/chat" });
@@ -59,7 +58,7 @@ export function OnboardingWidget() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg transition-transform hover:scale-105"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-violet-600 text-white shadow-lg transition-all hover:scale-105 glow-blue-strong"
       >
         <MessageSquare className="h-6 w-6" />
       </button>
@@ -67,34 +66,34 @@ export function OnboardingWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex h-[520px] w-[380px] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl dark:border-zinc-700 dark:bg-zinc-900">
+    <div className="fixed bottom-6 right-6 z-50 flex h-[520px] w-[380px] flex-col overflow-hidden rounded-2xl glass-strong glow-blue">
       {/* Header */}
-      <div className="flex items-center justify-between bg-blue-600 px-4 py-3">
-        <div className="flex items-center gap-2">
-          <Bot className="h-5 w-5 text-white" />
+      <div className="flex items-center justify-between border-b border-white/5 bg-gradient-to-r from-blue-600/20 to-violet-600/20 px-4 py-3">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-violet-600">
+            <Bot className="h-3.5 w-3.5 text-white" />
+          </div>
           <div>
-            <p className="text-sm font-medium text-white">Onboarding Assistant</p>
-            <p className="text-xs text-blue-200">
+            <p className="text-xs font-semibold text-white">Onboarding Assistant</p>
+            <p className="text-[10px] text-blue-300/60">
               Step {currentStepIndex + 1} of {steps.length}
             </p>
           </div>
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7 text-white hover:bg-blue-500"
+        <button
+          className="flex h-6 w-6 items-center justify-center rounded-md text-[#6b6b80] transition-colors hover:bg-white/5 hover:text-white"
           onClick={() => setIsOpen(false)}
         >
-          <X className="h-4 w-4" />
-        </Button>
+          <X className="h-3.5 w-3.5" />
+        </button>
       </div>
 
       {/* Progress bar */}
-      <div className="h-1 bg-blue-100">
+      <div className="h-0.5 bg-white/5">
         <div
-          className="h-full bg-blue-600 transition-all duration-500"
+          className="h-full bg-gradient-to-r from-blue-500 to-violet-500 transition-all duration-700"
           style={{
-            width: `${((steps.filter((s) => s.completed).length) / steps.length) * 100}%`,
+            width: `${(steps.filter((s) => s.completed).length / steps.length) * 100}%`,
           }}
         />
       </div>
@@ -109,11 +108,7 @@ export function OnboardingWidget() {
               if (message.role === "user" && text.includes("[CONTEXT:")) {
                 const cleanText = text.split("\n\n[CONTEXT:")[0];
                 return (
-                  <ChatMessage
-                    key={message.id}
-                    role="user"
-                    content={cleanText}
-                  />
+                  <ChatMessage key={message.id} role="user" content={cleanText} />
                 );
               }
               return (
@@ -126,13 +121,13 @@ export function OnboardingWidget() {
             })}
           {isLoading && messages[messages.length - 1]?.role === "user" && (
             <div className="flex gap-3 px-4 py-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600">
-                <Bot className="h-4 w-4 text-white" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-violet-600">
+                <Bot className="h-3.5 w-3.5 text-white" />
               </div>
-              <div className="flex items-center gap-1 rounded-2xl bg-zinc-100 px-4 py-3 dark:bg-zinc-800">
-                <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-400 [animation-delay:0ms]" />
-                <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-400 [animation-delay:150ms]" />
-                <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-400 [animation-delay:300ms]" />
+              <div className="flex items-center gap-1.5 rounded-xl bg-white/[0.03] border border-white/5 px-4 py-2.5">
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-blue-400 [animation-delay:0ms]" />
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-violet-400 [animation-delay:150ms]" />
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-cyan-400 [animation-delay:300ms]" />
               </div>
             </div>
           )}
