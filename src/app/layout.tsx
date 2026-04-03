@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SaaS Support AI — RAG-Powered Customer Support Demo",
+  title: "Onboard AI — AI-Powered Onboarding for SaaS",
   description:
-    "AI support chatbot trained on your product documentation. Built with Next.js, Claude, and RAG.",
+    "Stop losing 60% of signups. AI onboarding assistant that guides every user to value — 5x faster.",
 };
 
 export default function RootLayout({
@@ -28,7 +28,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-[#0a0b14] text-[#e4e4f0]">
+        {children}
+      </body>
     </html>
   );
 }

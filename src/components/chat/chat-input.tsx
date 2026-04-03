@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, type KeyboardEvent } from "react";
-import { Button } from "@/components/ui/button";
 import { ArrowUp } from "lucide-react";
 
 interface ChatInputProps {
@@ -39,30 +38,29 @@ export function ChatInput({ onSend, isLoading }: ChatInputProps) {
   }
 
   return (
-    <div className="border-t border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900">
-      <div className="relative flex items-end gap-2 rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-2 dark:border-zinc-700 dark:bg-zinc-800">
+    <div className="border-t border-white/5 bg-[#0a0b14]/80 p-3">
+      <div className="flex items-end gap-2 rounded-xl border border-white/5 bg-white/[0.03] px-3 py-1.5">
         <textarea
           ref={textareaRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           onInput={handleInput}
-          placeholder="Ask about Acme Analytics..."
+          placeholder="Ask a question..."
           rows={1}
-          className="flex-1 resize-none bg-transparent py-2 text-sm outline-none placeholder:text-zinc-400"
+          className="flex-1 resize-none bg-transparent py-2 text-sm text-[#e4e4f0] outline-none placeholder:text-[#3d3d50]"
           disabled={isLoading}
         />
-        <Button
+        <button
           onClick={handleSend}
           disabled={!input.trim() || isLoading}
-          size="icon"
-          className="h-8 w-8 shrink-0 rounded-full"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 text-white transition-all hover:scale-105 disabled:opacity-30 disabled:hover:scale-100"
         >
-          <ArrowUp className="h-4 w-4" />
-        </Button>
+          <ArrowUp className="h-3.5 w-3.5" />
+        </button>
       </div>
-      <p className="mt-2 text-center text-xs text-zinc-400">
-        AI assistant powered by RAG. Answers based on product documentation.
+      <p className="mt-1.5 text-center text-[10px] text-[#3d3d50]">
+        Powered by RAG — answers grounded in documentation
       </p>
     </div>
   );
